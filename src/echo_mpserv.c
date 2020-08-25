@@ -28,6 +28,7 @@ int main(int argc, char** argv)
     socklen_t adr_sz;
     int str_len, state;
     char buf[BUF_SIZE];
+    char msg[BUF_SIZE] = "Received Message";
 
     if (argc != 2) {
         printf("Usage: %s <port>\n", argv[0]);
@@ -69,7 +70,7 @@ int main(int argc, char** argv)
         {
             close(serv_sock);
             while ((str_len = read(clnt_sock, buf, BUF_SIZE)) != 0)
-                write(clnt_sock, buf, str_len);
+                write(clnt_sock, msg, BUF_SIZE);
 
             close(clnt_sock);
             puts("client disconnected...");
